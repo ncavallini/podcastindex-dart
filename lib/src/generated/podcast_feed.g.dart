@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'podcast_feed.dart';
+part of '../entity/podcast_feed.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

@@ -5,11 +5,12 @@ class HttpUtil {
   static const String baseUrl = "https://api.podcastindex.org/api/1.0";
   static Auth auth = Auth();
 
-  static toQueryString(Map<String, dynamic> queryParameters) =>
-      queryParameters.entries
-          .where((element) => element.value != null)
-          .map((e) => "${e.key}=${e.value}")
-          .join("&");
+  static toQueryString(Map<String, dynamic> queryParameters) => queryParameters
+      .entries
+      .where((element) => element.value != null)
+      .map((e) =>
+          "${Uri.encodeComponent(e.key.toString())}=${Uri.encodeComponent(e.value.toString())}")
+      .join("&");
 
   static Future<http.Response> get(String endpoint) async {
     var res = await http.get(Uri.parse(baseUrl + endpoint),

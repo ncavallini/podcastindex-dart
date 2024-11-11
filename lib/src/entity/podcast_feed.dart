@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'package:podcastindex_dart/src/enum/medium_type.dart';
-part 'podcast_feed.g.dart';
+part '../generated/podcast_feed.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class PodcastFeed {
