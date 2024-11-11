@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:podcastindex_dart/src/response/podcast_feeds_response.dart';
 import 'package:podcastindex_dart/src/enum/feed_value.dart';
-import 'package:podcastindex_dart/util/http_util.dart';
+import 'package:podcastindex_dart/src/util/http_util.dart';
 
 class PodcastFeedService {
   Future<PodcastFeedsResponse> findFeedsByTerm(String term,

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 import 'package:dotenv/dotenv.dart';
-import 'package:podcastindex_dart/util/constants.dart';
+import 'package:podcastindex_dart/src/util/constants.dart';
 
 class Auth {
   var env = DotEnv();
