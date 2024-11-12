@@ -1,5 +1,7 @@
-import 'package:podcastindex_dart/src/entity/feed.dart';
-import 'package:podcastindex_dart/src/response/feeds_response.dart';
-import 'package:podcastindex_dart/src/service/feed_service.dart';
+import 'package:podcastindex_dart/src/service/episode_service.dart';
 
-void main() async {}
+void main() async {
+  EpisodeService episodeService = EpisodeService();
+  var episodes = await episodeService.findEpisodesByFeedId(75075, max: 2);
+  print(episodes.map((e) => e.title));
+}

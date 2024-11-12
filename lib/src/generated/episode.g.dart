@@ -28,9 +28,9 @@ Episode _$EpisodeFromJson(Map<String, dynamic> json) => Episode(
       feedImage: Uri.parse(json['feedImage'] as String),
       feedId: (json['feedId'] as num).toInt(),
       feedUrl: Uri.parse(json['feedUrl'] as String),
-      feedAuthor: json['feedAuthor'] as String,
-      feedTitle: json['feedTitle'] as String,
-      feedLanguage: json['feedLanguage'] as String,
+      feedAuthor: json['feedAuthor'] as String?,
+      feedTitle: json['feedTitle'] as String?,
+      feedLanguage: json['feedLanguage'] as String?,
       chaptersUrl: json['chaptersUrl'] == null
           ? null
           : Uri.parse(json['chaptersUrl'] as String),

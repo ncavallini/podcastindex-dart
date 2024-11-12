@@ -28,14 +28,14 @@ class Feed {
   final String language;
   final bool explicit;
   final int type;
-  final MediumType medium;
+  final MediumType? medium;
   final int dead;
   final int episodeCount;
   final int crawlErrors;
   final int parseErrors;
   final Map<int, String>? categories;
   final int locked;
-  final int imageUrlHash;
+  final int? imageUrlHash;
   final int? newestItemPubdate;
 
   Feed({

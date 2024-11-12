@@ -27,9 +27,11 @@ Feed _$FeedFromJson(Map<String, dynamic> json) => Feed(
       itunesId: (json['itunesId'] as num?)?.toInt(),
       generator: json['generator'] as String,
       language: json['language'] as String,
-      explicit: json['explicit'] as bool,
+      explicit: (json['explicit'] is int)
+          ? json['explicit'] != 0
+          : json['explicit'] as bool,
       type: (json['type'] as num).toInt(),
-      medium: $enumDecode(_$MediumTypeEnumMap, json['medium']),
+      medium: $enumDecodeNullable(_$MediumTypeEnumMap, json['medium']),
       dead: (json['dead'] as num).toInt(),
       episodeCount: (json['episodeCount'] as num).toInt(),
       crawlErrors: (json['crawlErrors'] as num).toInt(),
@@ -38,7 +40,7 @@ Feed _$FeedFromJson(Map<String, dynamic> json) => Feed(
         (k, e) => MapEntry(int.parse(k), e as String),
       ),
       locked: (json['locked'] as num).toInt(),
-      imageUrlHash: (json['imageUrlHash'] as num).toInt(),
+      imageUrlHash: (json['imageUrlHash'] as num?)?.toInt(),
       newestItemPubdate: (json['newestItemPubdate'] as num?)?.toInt(),
     );
 
@@ -65,7 +67,7 @@ Map<String, dynamic> _$FeedToJson(Feed instance) => <String, dynamic>{
       'language': instance.language,
       'explicit': instance.explicit,
       'type': instance.type,
-      'medium': _$MediumTypeEnumMap[instance.medium]!,
+      'medium': _$MediumTypeEnumMap[instance.medium],
       'dead': instance.dead,
       'episodeCount': instance.episodeCount,
       'crawlErrors': instance.crawlErrors,

@@ -28,9 +28,9 @@ class Episode {
   final Uri feedImage;
   final int feedId;
   final Uri feedUrl;
-  final String feedAuthor;
-  final String feedTitle;
-  final String feedLanguage;
+  final String? feedAuthor;
+  final String? feedTitle;
+  final String? feedLanguage;
   final Uri? chaptersUrl;
   final Uri? transcriptUrl;
   final List<Transcript>? transcripts;
@@ -56,9 +56,9 @@ class Episode {
     required this.feedImage,
     required this.feedId,
     required this.feedUrl,
-    required this.feedAuthor,
-    required this.feedTitle,
-    required this.feedLanguage,
+    this.feedAuthor,
+    this.feedTitle,
+    this.feedLanguage,
     this.chaptersUrl,
     this.transcriptUrl,
     this.transcripts,

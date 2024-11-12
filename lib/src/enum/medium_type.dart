@@ -7,5 +7,12 @@ enum MediumType {
   newsletter,
   blog,
   publisher,
-  course
+  course;
+
+  const MediumType();
+
+  @override
+  String toString() {
+    return name;
+  }
 }
