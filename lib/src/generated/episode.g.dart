@@ -10,7 +10,7 @@ Episode _$EpisodeFromJson(Map<String, dynamic> json) => Episode(
       id: (json['id'] as num).toInt(),
       title: json['title'] as String,
       link: Uri.parse(json['link'] as String),
-      description: json['description'] as String,
+      description: json['description'] as String?,
       guid: json['guid'] as String,
       datePublished: (json['datePublished'] as num).toInt(),
       dateCrawled: (json['dateCrawled'] as num).toInt(),
@@ -27,7 +27,8 @@ Episode _$EpisodeFromJson(Map<String, dynamic> json) => Episode(
       feedItunesId: (json['feedItunesId'] as num?)?.toInt(),
       feedImage: Uri.parse(json['feedImage'] as String),
       feedId: (json['feedId'] as num).toInt(),
-      feedUrl: Uri.parse(json['feedUrl'] as String),
+      feedUrl:
+          json['feedUrl'] == null ? null : Uri.parse(json['feedUrl'] as String),
       feedAuthor: json['feedAuthor'] as String?,
       feedTitle: json['feedTitle'] as String?,
       feedLanguage: json['feedLanguage'] as String?,

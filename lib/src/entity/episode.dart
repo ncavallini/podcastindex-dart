@@ -11,7 +11,7 @@ class Episode {
   final int id;
   final String title;
   final Uri link;
-  final String description;
+  final String? description;
   final String guid;
   final int datePublished;
   final int dateCrawled;
@@ -27,7 +27,7 @@ class Episode {
   final int? feedItunesId;
   final Uri feedImage;
   final int feedId;
-  final Uri feedUrl;
+  final Uri? feedUrl;
   final String? feedAuthor;
   final String? feedTitle;
   final String? feedLanguage;
@@ -39,7 +39,7 @@ class Episode {
     required this.id,
     required this.title,
     required this.link,
-    required this.description,
+    this.description,
     required this.guid,
     required this.datePublished,
     required this.dateCrawled,
@@ -55,7 +55,7 @@ class Episode {
     this.feedItunesId,
     required this.feedImage,
     required this.feedId,
-    required this.feedUrl,
+    this.feedUrl,
     this.feedAuthor,
     this.feedTitle,
     this.feedLanguage,

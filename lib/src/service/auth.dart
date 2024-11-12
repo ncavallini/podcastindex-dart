@@ -11,8 +11,8 @@ class Auth {
 
   Auth() {
     env.load();
-    _apiKey = env['API_KEY']!;
-    _apiSecret = env['API_SECRET']!;
+    _apiKey = env['PODCASTINDEX_API_KEY']!;
+    _apiSecret = env['PODCASTINDEX_API_SECRET']!;
   }
 
   String computeAuthorizationHeader(String unixTime) =>

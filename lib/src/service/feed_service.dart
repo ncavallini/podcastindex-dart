@@ -26,9 +26,7 @@ class FeedService {
     };
     String queryString = HttpUtil.toQueryString(queryParameters);
     var response = await HttpUtil.get("/search/byterm?$queryString");
-    if (response.statusCode != 200) {
-      throw Exception("An API error has occured.\n${response.body}");
-    }
+    HttpUtil.handleApiError(response);
     return List<Feed>.from(
         jsonDecode(response.body)['feeds'].map((f) => Feed.fromJson(f)));
   }
@@ -53,9 +51,7 @@ class FeedService {
     };
     String queryString = HttpUtil.toQueryString(queryParameters);
     var response = await HttpUtil.get("/search/bytitle?$queryString");
-    if (response.statusCode != 200) {
-      throw Exception("An API error has occured.\n${response.body}");
-    }
+    HttpUtil.handleApiError(response);
     return List<Feed>.from(
         jsonDecode(response.body)['feeds'].map((f) => Feed.fromJson(f)));
   }
@@ -82,42 +78,32 @@ class FeedService {
     };
     String queryString = HttpUtil.toQueryString(queryParameters);
     var response = await HttpUtil.get("/search/music/byterm?$queryString");
-    if (response.statusCode != 200) {
-      throw Exception("An API error has occured.\n${response.body}");
-    }
+    HttpUtil.handleApiError(response);
     return List<Feed>.from(
         jsonDecode(response.body)['feeds'].map((f) => Feed.fromJson(f)));
   }
 
   Future<Feed> findFeedById(int id) async {
     var response = await HttpUtil.get("/podcasts/byfeedid?id=$id");
-    if (response.statusCode != 200) {
-      throw Exception("An API error has occured.\n${response.body}");
-    }
+    HttpUtil.handleApiError(response);
     return Feed.fromJson(jsonDecode(((response.body)))['feed']);
   }
 
   Future<Feed> findFeedByUrl(String url) async {
     var response = await HttpUtil.get("/podcasts/byfeedurl?url=$url");
-    if (response.statusCode != 200) {
-      throw Exception("An API error has occured.\n${response.body}");
-    }
+    HttpUtil.handleApiError(response);
     return Feed.fromJson(jsonDecode(((response.body)))['feed']);
   }
 
   Future<Feed> findFeedByItunesId(int itunesId) async {
     var response = await HttpUtil.get("/podcasts/byitunesid?id=$itunesId");
-    if (response.statusCode != 200) {
-      throw Exception("An API error has occured.\n${response.body}");
-    }
+    HttpUtil.handleApiError(response);
     return Feed.fromJson(jsonDecode(((response.body)))['feed']);
   }
 
   Future<Feed> findFeedByPodcastGuid(String podcastGuid) async {
     var response = await HttpUtil.get("/podcasts/byguid?guid=$podcastGuid");
-    if (response.statusCode != 200) {
-      throw Exception("An API error has occured.\n${response.body}");
-    }
+    HttpUtil.handleApiError(response);
     return Feed.fromJson(jsonDecode(((response.body)))['feed']);
   }
 
@@ -127,9 +113,7 @@ class FeedService {
 
     var response = await HttpUtil.get("/podcasts/bymedium?$queryString");
 
-    if (response.statusCode != 200) {
-      throw Exception("An API error has occured.\n${response.body}");
-    }
+    HttpUtil.handleApiError(response);
     return List<Feed>.from(
         jsonDecode(response.body)['feeds'].map((f) => Feed.fromJson(f)));
   }

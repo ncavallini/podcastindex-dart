@@ -1,39 +1,89 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+ℹ️ This library provides easy access to the <a href="https://podcastindex.org/" target="_blank">PodcastIndex</a> API to find podcasts feeds & episodes.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+📱 This library can be used in Flutter apps, too!
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Only the most important part of the PodcastIndex API has been implemented (for now). 
+For terminology, please refer to the official <a href="https://podcastindex-org.github.io/docs-api" target="_blank">API Docs</a>.
+
+### Feeds
+
+### Episodes
+
+### Other Endpoints
+
+Please note that you can manually call not-yet-implemented endpoints using 
+```dart
+HttpUtil.get(endpoint)
+``` 
+from this library, where `endpoint` is of the form `/some-endpoint`. This function will take care of authentication for you.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+1. Install the library as usual: 
+```bash
+dart pub add podcastindex_dart
+``` 
+ or, if using Flutter:
+```bash
+flutter pub add podcastindex_dart
+```
+
+2. If you don't have one already, create a `.env` file at the root of your project.
+
+Paste following content: 
+
+```bash
+PODCASTINDEX_API_KEY='your_api_key'
+PODCASTINDEX_API_SECRET='your_api_secret'
+```
+⚠️ You can get these two values by signing up for a **free** PodcastIndex account <a href="https://api.podcastindex.org/" target="_blank">here</a>.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+There are essentially two *services* that deal with the two fundamentals type returned by the API: `FeedService` and `EpisodeService`.
 
+A *feed* represents a podcast in its totality; an *episode* represents a single episode of a specific feed. 
+
+Simply instantiate the desired service:
 ```dart
-const like = 'sample';
+var feedService = FeedService();
+var episodeService = EpisodeService();
+```
+On these objects, method names reflects that of the PodcastIndex API's endpoints and are pretty self-explanatory.
+
+As usual, please refer to the <a href="https://podcastindex-org.github.io/docs-api" target="_blank">official API Docs</a>.
+
+## Example
+Let's suppose we want to match all podcasts (*feeds*) with a given word (**a typical usage for a search bar!**).
+
+This is how I'd do it: 
+```dart
+String term = searchBarInput.value; /*Dumb code, just for you to get the idea!*/
+
+List<Feed> searchResults = feedService.findFeedsByTerm(term);
 ```
 
-## Additional information
+To limit the search at the first 10 results, we can modify the code to include the `max` optional parameter:
+```dart
+List<Feed> searchResults = feedService.findFeedsByTerm(term, max: 10);
+```
+Additionally, to let explicit contents out of the results, we can set the `clean` flag:
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+```dart
+List<Feed> searchResults = feedService.findFeedsByTerm(term, max: 10, clean: true);
+```
+
+To play an episode (in reality, to get the stream URL of a specific episode), we would write the following:
+
+```dart
+String episodeGuid = "some-episode-guid-you-found-with-other-calls";
+Episode episode = episodeService.findEpisodeByGuid(episodeGuid);
+String playbackUrl = episode.url;
+
+audioplayer.play(playbackUrl); // Dumb code, to get the idea!
+```
+
+ℹ️ The name of parameters and fields reflects those of the <a href="https://podcastindex-org.github.io/docs-api" target="_blank">official API</a>.
+

@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:podcastindex_dart/src/service/auth.dart';
 
 class HttpUtil {
@@ -12,9 +15,16 @@ class HttpUtil {
           "${Uri.encodeComponent(e.key.toString())}=${Uri.encodeComponent(e.value.toString())}")
       .join("&");
 
-  static Future<http.Response> get(String endpoint) async {
+  static Future<Response> get(String endpoint) async {
     var res = await http.get(Uri.parse(baseUrl + endpoint),
         headers: auth.getHeaders());
     return res;
+  }
+
+  static void handleApiError(Response response) {
+    if (response.statusCode != HttpStatus.ok) {
+      throw Exception(
+          "[HTTP ${response.statusCode}] An API error has occured.\n${response.body}");
+    }
   }
 }
