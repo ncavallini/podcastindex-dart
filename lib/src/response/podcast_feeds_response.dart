@@ -1,15 +1,15 @@
 import 'package:collection/collection.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:podcastindex_dart/src/entity/podcast_feed.dart';
+import 'package:podcastindex_dart/src/entity/feed.dart';
 
 part '../generated/podcast_feed_response.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class PodcastFeedsResponse {
-  List<PodcastFeed> feeds;
-  int count;
-  String query;
-  String description;
+  final List<Feed> feeds;
+  final int count;
+  final String query;
+  final String description;
 
   PodcastFeedsResponse({
     required this.feeds,
@@ -19,7 +19,7 @@ class PodcastFeedsResponse {
   });
 
   PodcastFeedsResponse copyWith({
-    List<PodcastFeed>? feeds,
+    List<Feed>? feeds,
     int? count,
     String? query,
     String? description,

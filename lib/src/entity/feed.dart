@@ -2,42 +2,43 @@ import 'package:collection/collection.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'package:podcastindex_dart/src/enum/medium_type.dart';
-part '../generated/podcast_feed.g.dart';
+part '../generated/feed.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class PodcastFeed {
-  int id;
-  String podcastGuid;
-  String title;
-  Uri url;
-  Uri originalUrl;
-  Uri link;
-  String description;
-  String author;
-  String ownerName;
-  Uri image;
-  Uri artwork;
-  int lastUpdateTime;
-  int lastCrawlTime;
-  int lastParseTime;
-  int lastGoodHttpStatusTime;
-  int lastHttpStatus;
-  String contentType;
-  int? itunesId;
-  String generator;
-  String language;
-  bool explicit;
-  int type;
-  MediumType medium;
-  int dead;
-  int episodeCount;
-  int crawlErrors;
-  int parseErrors;
-  Map<int, String> categories;
-  int locked;
-  int imageUrlHash;
-  int newestItemPubdate;
-  PodcastFeed({
+class Feed {
+  final int id;
+  final String podcastGuid;
+  final String title;
+  final Uri url;
+  final Uri originalUrl;
+  final Uri link;
+  final String description;
+  final String author;
+  final String ownerName;
+  final Uri image;
+  final Uri artwork;
+  final int lastUpdateTime;
+  final int lastCrawlTime;
+  final int lastParseTime;
+  final int lastGoodHttpStatusTime;
+  final int lastHttpStatus;
+  final String contentType;
+  final int? itunesId;
+  final String generator;
+  final String language;
+  final bool explicit;
+  final int type;
+  final MediumType medium;
+  final int dead;
+  final int episodeCount;
+  final int crawlErrors;
+  final int parseErrors;
+  final Map<int, String> categories;
+  final int locked;
+  final int imageUrlHash;
+  final int newestItemPubdate;
+
+  Feed({
     required this.id,
     required this.podcastGuid,
     required this.title,
@@ -76,7 +77,7 @@ class PodcastFeed {
     return 'PodcastFeed(id: $id, podcastGuid: $podcastGuid, title: $title, url: $url, originalUrl: $originalUrl, link: $link, description: $description, author: $author, ownerName: $ownerName, image: $image, artwork: $artwork, lastUpdateTime: $lastUpdateTime, lastCrawlTime: $lastCrawlTime, lastParseTime: $lastParseTime, lastGoodHttpStatusTime: $lastGoodHttpStatusTime, lastHttpStatus: $lastHttpStatus, contentType: $contentType, itunesId: $itunesId, generator: $generator, language: $language, explicit: $explicit, type: $type, medium: $medium, dead: $dead, episodeCount: $episodeCount, crawlErrors: $crawlErrors, parseErrors: $parseErrors, categories: $categories, locked: $locked, imageUrlHash: $imageUrlHash, newestItemPubdate: $newestItemPubdate)';
   }
 
-  factory PodcastFeed.fromJson(Map<String, dynamic> json) =>
+  factory Feed.fromJson(Map<String, dynamic> json) =>
       _$PodcastFeedFromJson(json);
 
   Map<String, dynamic> toJson() => _$PodcastFeedToJson(this);
@@ -86,7 +87,7 @@ class PodcastFeed {
     if (identical(this, other)) return true;
     final mapEquals = const DeepCollectionEquality().equals;
 
-    return other is PodcastFeed &&
+    return other is Feed &&
         other.id == id &&
         other.podcastGuid == podcastGuid &&
         other.title == title &&

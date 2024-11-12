@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../entity/podcast_feed.dart';
+part of '../entity/feed.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-PodcastFeed _$PodcastFeedFromJson(Map<String, dynamic> json) => PodcastFeed(
+Feed _$PodcastFeedFromJson(Map<String, dynamic> json) => Feed(
       id: (json['id'] as num).toInt(),
       podcastGuid: json['podcastGuid'] as String,
       title: json['title'] as String,
@@ -42,8 +42,7 @@ PodcastFeed _$PodcastFeedFromJson(Map<String, dynamic> json) => PodcastFeed(
       newestItemPubdate: (json['newestItemPubdate'] as num).toInt(),
     );
 
-Map<String, dynamic> _$PodcastFeedToJson(PodcastFeed instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$PodcastFeedToJson(Feed instance) => <String, dynamic>{
       'id': instance.id,
       'podcastGuid': instance.podcastGuid,
       'title': instance.title,

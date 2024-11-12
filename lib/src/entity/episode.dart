@@ -1,35 +1,40 @@
 import 'package:collection/collection.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 import 'package:podcastindex_dart/src/entity/transcript.dart';
 import 'package:podcastindex_dart/src/enum/episode_type.dart';
 
+part '../generated/episode.g.dart';
+
+@JsonSerializable(explicitToJson: true)
 class Episode {
-  int id;
-  String title;
-  Uri link;
-  String description;
-  String guid;
-  int datePublished;
-  int dateCrawled;
-  Uri enclosureUrl;
-  String enclosureType;
-  int enclosureLength;
-  int? duration;
-  final int _explicit;
-  int? episode;
-  EpisodeType? episodeType;
-  int? season;
-  Uri image;
-  int? feedItunesId;
-  Uri feedImage;
-  int feedId;
-  Uri feedUrl;
-  String feedAuthor;
-  String feedTitle;
-  String feedLanguage;
-  Uri? chaptersUrl;
-  Uri? transcriptUrl;
-  List<Transcript>? transcripts;
+  final int id;
+  final String title;
+  final Uri link;
+  final String description;
+  final String guid;
+  final int datePublished;
+  final int dateCrawled;
+  final Uri enclosureUrl;
+  final String enclosureType;
+  final int enclosureLength;
+  final int? duration;
+  final int explicit;
+  final int? episode;
+  final EpisodeType? episodeType;
+  final int? season;
+  final Uri image;
+  final int? feedItunesId;
+  final Uri feedImage;
+  final int feedId;
+  final Uri feedUrl;
+  final String feedAuthor;
+  final String feedTitle;
+  final String feedLanguage;
+  final Uri? chaptersUrl;
+  final Uri? transcriptUrl;
+  final List<Transcript>? transcripts;
+
   Episode({
     required this.id,
     required this.title,
@@ -42,7 +47,7 @@ class Episode {
     required this.enclosureType,
     required this.enclosureLength,
     this.duration,
-    required int explicit,
+    required this.explicit,
     this.episode,
     this.episodeType,
     this.season,
@@ -57,14 +62,9 @@ class Episode {
     this.chaptersUrl,
     this.transcriptUrl,
     this.transcripts,
-  }) : _explicit = explicit;
+  });
 
-  bool get isExplicit => _explicit != 0;
-
-  @override
-  String toString() {
-    return 'PodcastItem(id: $id, title: $title, link: $link, description: $description, guid: $guid, datePublished: $datePublished, dateCrawled: $dateCrawled, enclosureUrl: $enclosureUrl, enclosureType: $enclosureType, enclosureLength: $enclosureLength, duration: $duration, _explicit: $_explicit, episode: $episode, episodeType: $episodeType, season: $season, image: $image, feedItunesId: $feedItunesId, feedImage: $feedImage, feedId: $feedId, feedUrl: $feedUrl, feedAuthor: $feedAuthor, feedTitle: $feedTitle, feedLanguage: $feedLanguage, chaptersUrl: $chaptersUrl, transcriptUrl: $transcriptUrl, transcripts: $transcripts)';
-  }
+  bool get isExplicit => explicit != 0;
 
   @override
   bool operator ==(Object other) {
@@ -83,7 +83,7 @@ class Episode {
         other.enclosureType == enclosureType &&
         other.enclosureLength == enclosureLength &&
         other.duration == duration &&
-        other._explicit == _explicit &&
+        other.explicit == explicit &&
         other.episode == episode &&
         other.episodeType == episodeType &&
         other.season == season &&
@@ -113,7 +113,7 @@ class Episode {
         enclosureType.hashCode ^
         enclosureLength.hashCode ^
         duration.hashCode ^
-        _explicit.hashCode ^
+        explicit.hashCode ^
         episode.hashCode ^
         episodeType.hashCode ^
         season.hashCode ^
@@ -129,4 +129,9 @@ class Episode {
         transcriptUrl.hashCode ^
         transcripts.hashCode;
   }
+
+  factory Episode.fromJson(Map<String, dynamic> json) =>
+      _$EpisodeFromJson(json);
+
+  Map<String, dynamic> toJson() => _$EpisodeToJson(this);
 }
