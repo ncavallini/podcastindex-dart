@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../response/podcast_feeds_response.dart';
+part of '../response/feeds_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-PodcastFeedsResponse _$PodcastResponseFromJson(Map<String, dynamic> json) =>
-    PodcastFeedsResponse(
+FeedsResponse _$PodcastResponseFromJson(Map<String, dynamic> json) =>
+    FeedsResponse(
       feeds: (json['feeds'] as List<dynamic>)
           .map((e) => Feed.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -16,7 +16,7 @@ PodcastFeedsResponse _$PodcastResponseFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String,
     );
 
-Map<String, dynamic> _$PodcastResponseToJson(PodcastFeedsResponse instance) =>
+Map<String, dynamic> _$PodcastResponseToJson(FeedsResponse instance) =>
     <String, dynamic>{
       'feeds': instance.feeds.map((e) => e.toJson()).toList(),
       'count': instance.count,

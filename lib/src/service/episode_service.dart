@@ -1,8 +1,10 @@
-// import 'package:podcastindex_dart/src/entity/podcast_episodes_response.dart';
-// import 'package:podcastindex_dart/util/http_util.dart';
+import 'dart:convert';
 
-class PodcastEpisodeService {
-  /* Future<PodcastEpisodesResponse> findEpisodesByPerson(String person,
+import 'package:podcastindex_dart/src/response/episodes_response.dart';
+import 'package:podcastindex_dart/src/util/http_util.dart';
+
+class EpisodeService {
+  Future<EpisodesResponse> findEpisodesByPerson(String person,
       {int? max, bool? fulltext, bool? pretty}) async {
     Map<String, dynamic> queryParameters = {
       "q": person,
@@ -15,6 +17,6 @@ class PodcastEpisodeService {
     if (response.statusCode != 200) {
       throw Exception("An API error has occured.\n${response.body}");
     }
-    return PodcastEpisodesResponse.fromJson(jsonDecode(response.body));
-  } */
+    return EpisodesResponse.fromJson(jsonDecode(response.body));
+  }
 }

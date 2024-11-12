@@ -33,10 +33,10 @@ class Feed {
   final int episodeCount;
   final int crawlErrors;
   final int parseErrors;
-  final Map<int, String> categories;
+  final Map<int, String>? categories;
   final int locked;
   final int imageUrlHash;
-  final int newestItemPubdate;
+  final int? newestItemPubdate;
 
   Feed({
     required this.id,
@@ -69,7 +69,7 @@ class Feed {
     required this.categories,
     required this.locked,
     required this.imageUrlHash,
-    required this.newestItemPubdate,
+    this.newestItemPubdate,
   });
 
   @override
@@ -77,10 +77,9 @@ class Feed {
     return 'PodcastFeed(id: $id, podcastGuid: $podcastGuid, title: $title, url: $url, originalUrl: $originalUrl, link: $link, description: $description, author: $author, ownerName: $ownerName, image: $image, artwork: $artwork, lastUpdateTime: $lastUpdateTime, lastCrawlTime: $lastCrawlTime, lastParseTime: $lastParseTime, lastGoodHttpStatusTime: $lastGoodHttpStatusTime, lastHttpStatus: $lastHttpStatus, contentType: $contentType, itunesId: $itunesId, generator: $generator, language: $language, explicit: $explicit, type: $type, medium: $medium, dead: $dead, episodeCount: $episodeCount, crawlErrors: $crawlErrors, parseErrors: $parseErrors, categories: $categories, locked: $locked, imageUrlHash: $imageUrlHash, newestItemPubdate: $newestItemPubdate)';
   }
 
-  factory Feed.fromJson(Map<String, dynamic> json) =>
-      _$PodcastFeedFromJson(json);
+  factory Feed.fromJson(Map<String, dynamic> json) => _$FeedFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PodcastFeedToJson(this);
+  Map<String, dynamic> toJson() => _$FeedToJson(this);
 
   @override
   bool operator ==(Object other) {

@@ -130,6 +130,11 @@ class Episode {
         transcripts.hashCode;
   }
 
+  @override
+  String toString() {
+    return 'Episode{id: $id, title: $title, link: $link, description: $description, guid: $guid, datePublished: $datePublished, dateCrawled: $dateCrawled, enclosureUrl: $enclosureUrl, enclosureType: $enclosureType, enclosureLength: $enclosureLength, duration: $duration, explicit: $explicit, episode: $episode, episodeType: $episodeType, season: $season, image: $image, feedItunesId: $feedItunesId, feedImage: $feedImage, feedId: $feedId, feedUrl: $feedUrl, feedAuthor: $feedAuthor, feedTitle: $feedTitle, feedLanguage: $feedLanguage, chaptersUrl: $chaptersUrl, transcriptUrl: $transcriptUrl, transcripts: $transcripts}';
+  }
+
   factory Episode.fromJson(Map<String, dynamic> json) =>
       _$EpisodeFromJson(json);
 

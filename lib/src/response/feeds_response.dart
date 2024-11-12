@@ -2,29 +2,29 @@ import 'package:collection/collection.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:podcastindex_dart/src/entity/feed.dart';
 
-part '../generated/podcast_feed_response.g.dart';
+part '../generated/feed_response.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class PodcastFeedsResponse {
+class FeedsResponse {
   final List<Feed> feeds;
   final int count;
   final String query;
   final String description;
 
-  PodcastFeedsResponse({
+  FeedsResponse({
     required this.feeds,
     required this.count,
     required this.query,
     required this.description,
   });
 
-  PodcastFeedsResponse copyWith({
+  FeedsResponse copyWith({
     List<Feed>? feeds,
     int? count,
     String? query,
     String? description,
   }) {
-    return PodcastFeedsResponse(
+    return FeedsResponse(
       feeds: feeds ?? this.feeds,
       count: count ?? this.count,
       query: query ?? this.query,
@@ -32,7 +32,7 @@ class PodcastFeedsResponse {
     );
   }
 
-  factory PodcastFeedsResponse.fromJson(Map<String, dynamic> json) =>
+  factory FeedsResponse.fromJson(Map<String, dynamic> json) =>
       _$PodcastResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$PodcastResponseToJson(this);
@@ -47,7 +47,7 @@ class PodcastFeedsResponse {
     if (identical(this, other)) return true;
     final listEquals = const DeepCollectionEquality().equals;
 
-    return other is PodcastFeedsResponse &&
+    return other is FeedsResponse &&
         listEquals(other.feeds, feeds) &&
         other.count == count &&
         other.query == query &&

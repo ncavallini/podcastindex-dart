@@ -6,7 +6,7 @@ part of '../entity/feed.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Feed _$PodcastFeedFromJson(Map<String, dynamic> json) => Feed(
+Feed _$FeedFromJson(Map<String, dynamic> json) => Feed(
       id: (json['id'] as num).toInt(),
       podcastGuid: json['podcastGuid'] as String,
       title: json['title'] as String,
@@ -34,15 +34,15 @@ Feed _$PodcastFeedFromJson(Map<String, dynamic> json) => Feed(
       episodeCount: (json['episodeCount'] as num).toInt(),
       crawlErrors: (json['crawlErrors'] as num).toInt(),
       parseErrors: (json['parseErrors'] as num).toInt(),
-      categories: (json['categories'] as Map<String, dynamic>).map(
+      categories: (json['categories'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(int.parse(k), e as String),
       ),
       locked: (json['locked'] as num).toInt(),
       imageUrlHash: (json['imageUrlHash'] as num).toInt(),
-      newestItemPubdate: (json['newestItemPubdate'] as num).toInt(),
+      newestItemPubdate: (json['newestItemPubdate'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$PodcastFeedToJson(Feed instance) => <String, dynamic>{
+Map<String, dynamic> _$FeedToJson(Feed instance) => <String, dynamic>{
       'id': instance.id,
       'podcastGuid': instance.podcastGuid,
       'title': instance.title,
@@ -71,7 +71,7 @@ Map<String, dynamic> _$PodcastFeedToJson(Feed instance) => <String, dynamic>{
       'crawlErrors': instance.crawlErrors,
       'parseErrors': instance.parseErrors,
       'categories':
-          instance.categories.map((k, e) => MapEntry(k.toString(), e)),
+          instance.categories?.map((k, e) => MapEntry(k.toString(), e)),
       'locked': instance.locked,
       'imageUrlHash': instance.imageUrlHash,
       'newestItemPubdate': instance.newestItemPubdate,

@@ -18,10 +18,10 @@ Map<String, dynamic> _$TranscriptToJson(Transcript instance) =>
     };
 
 const _$TranscriptTypeEnumMap = {
-  TranscriptType.json: 'json',
-  TranscriptType.applicationSrt: 'applicationSrt',
-  TranscriptType.html: 'html',
-  TranscriptType.plain: 'plain',
-  TranscriptType.textSrt: 'textSrt',
-  TranscriptType.vtt: 'vtt',
+  TranscriptType.json: 'application/json',
+  TranscriptType.applicationSrt: 'application/srt',
+  TranscriptType.html: 'text/html',
+  TranscriptType.plain: 'text/plain',
+  TranscriptType.textSrt: 'text/srt',
+  TranscriptType.vtt: 'text/vtt',
 };
