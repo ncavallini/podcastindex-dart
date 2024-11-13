@@ -1,3 +1,5 @@
+# PodcastIndex Library for Dart/Flutter
+
 ℹ️ This library provides easy access to the <a href="https://podcastindex.org/" target="_blank">PodcastIndex</a> API to find podcasts feeds & episodes.
 
 📱 This library can be used in Flutter apps, too!
@@ -7,28 +9,127 @@
 Only the most important part of the PodcastIndex API has been implemented (for now). 
 For terminology, please refer to the official <a href="https://podcastindex-org.github.io/docs-api" target="_blank">API Docs</a>.
 
-### Feeds
+
+
+> [!NOTE]
+>
+> ⚡ **Current Progress: 15/40 endpoints implemented.** 
+
+![svg image](data:image/svg+xml,%20%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20viewBox%3D%22-25%20-25%20250%20250%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20style%3D%22transform%3Arotate%28-90deg%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2290%22%20cx%3D%22100%22%20cy%3D%22100%22%20fill%3D%22transparent%22%20stroke%3D%22%23e0e0e0%22%20stroke-width%3D%2216px%22%20stroke-dasharray%3D%22565.48px%22%20stroke-dashoffset%3D%220%22%3E%3C%2Fcircle%3E%0A%20%20%20%20%3Ccircle%20r%3D%2290%22%20cx%3D%22100%22%20cy%3D%22100%22%20stroke%3D%22%2352c5ff%22%20stroke-width%3D%2216px%22%20stroke-linecap%3D%22butt%22%20stroke-dashoffset%3D%22350px%22%20fill%3D%22transparent%22%20stroke-dasharray%3D%22565.48px%22%3E%3C%2Fcircle%3E%0A%20%20%20%20%3Ctext%20x%3D%2252px%22%20y%3D%22117px%22%20fill%3D%22%2352c5ff%22%20font-size%3D%2252px%22%20font-weight%3D%22bold%22%20style%3D%22transform%3Arotate%2890deg%29%20translate%280px%2C%20-196px%29%22%3E38%25%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E)
+
+> [!NOTE]
+>
+> A *feed* represents a podcast in its totality; an *episode* represents a single episode of a specific feed. 
+>
+> PodcastIndex uses *feed* and *podcast* interchangeably. Albeit confusing, we do the same here.
+
+> [!TIP]
+>
+> Pay attention to the use of singular/plural in method names. For example, `findFeedById` returns a `Future<Feed>`, whereas `findFeedsByTerm` returns a `Future<List<Feed>>`.
+
+> [!TIP]
+>
+> All methods return a `Future<...>`, as HTTP call are asynchronous. Just use `await` in front of the method call, and mark the *calling* method as `async`.
+>
+> ```dart
+> void f() async {
+>     List<Feed> results = await feedService.findFeedsByTerm("some term"); 
+>     
+>     // Notice that the return type is not wrapped in a Future, because we called 		the method with await
+> }
+> ```
+
+
+
+### Search
+
+> [!IMPORTANT]
+>
+> Endpoints in the *Search* category use both the `FeedService` and the `EpisodeService`! It's always better to instantiate both at the same time.
+
+
+
+| Name                                                         | Implemented? | Endpoint               | Method                                |
+| ------------------------------------------------------------ | ------------ | ---------------------- | ------------------------------------- |
+| [Search (podcasts) by term](https://podcastindex-org.github.io/docs-api/#get-/search/byterm) | ✅            | `/search/byterm`       | `FeedService.findFeedsByTerm`         |
+| [Search podcasts by title](https://podcastindex-org.github.io/docs-api/#get-/search/bytitle) | ✅            | `/search/bytitle`      | `FeedService.findFeedsByTitle`        |
+| [Search episodes by person](https://podcastindex-org.github.io/docs-api/#get-/search/byperson) | ✅            | `/search/byperson`     | `EpisodeService.findEpisodesByPerson` |
+| [Search Music Podcasts](https://podcastindex-org.github.io/docs-api/#get-/search/music/byterm) | ✅            | `/search/music/byterm` | `FeedService.findMusicFeedsByTerm`    |
+
+
+
+### Podcasts (*Feeds*)
+
+| Name                                                         | Implemented? | Endpoint               | Method                              |
+| ------------------------------------------------------------ | ------------ | ---------------------- | ----------------------------------- |
+| [By Feed ID](https://podcastindex-org.github.io/docs-api/#get-/podcasts/byfeedid) | ✅            | `/podcasts/byfeedid`   | `FeedService.findFeedById`          |
+| [By Feed URL](https://podcastindex-org.github.io/docs-api/#get-/podcasts/byfeedurl) | ✅            | `/podcasts/byfeedurl`  | `FeedService.findFeedByUrl`         |
+| [By iTunes ID](https://podcastindex-org.github.io/docs-api/#get-/podcasts/byitunesid) | ✅            | `/podcasts/byitunesid` | `FeedService.findFeedByItunesId`    |
+| [By GUID](https://podcastindex-org.github.io/docs-api/#get-/podcasts/byguid) | ✅            | `/podcasts/byguid`     | `FeedService.findFeedByPodcastGuid` |
+| [By Tag](https://podcastindex-org.github.io/docs-api/#get-/podcasts/bytag) | ❌            | `/podcasts/bytag`      | -                                   |
+| [By Medium](https://podcastindex-org.github.io/docs-api/#get-/podcasts/bymedium) | ✅            | `/oodcasts/bymedium`   | `FeedService.findFeedByMedium`      |
+| [Trending](https://podcastindex-org.github.io/docs-api/#get-/podcasts/trending) | ❌            | `/podcasts/trending`   | -                                   |
+| [Dead](https://podcastindex-org.github.io/docs-api/#get-/podcasts/dead) | ❌            | `/podcasts/dead`       | -                                   |
+
+> [!NOTE]
+>
+> The GUID is a unique, global identifier for the podcast. See the namespace spec for [guid](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#guid) for details. (*from PodcastIndex API Docs*).
+
+
+
 
 ### Episodes
 
+| Name                                                         | Implemented? | Endpoint               | Method                              |
+| ------------------------------------------------------------ | ------------ | ---------------------- | ----------------------------------- |
+| [By Feed ID](https://podcastindex-org.github.io/docs-api/#get-/episodes/byfeedid) | ✅            | `/episodes/byfeedid`   | `EpisodeService.findEpisodesByFeedId` |
+| [By Feed URL](https://podcastindex-org.github.io/docs-api/#get-/episodes/byfeedurl) | ✅            | `/episodes/byfeedurl`  | `EpisodeService.findEpisodesByFeedUrl` |
+| [By Podcast GUID](https://podcastindex-org.github.io/docs-api/#get-/episodes/bypodcastguid) | ✅            | `/episodes/bypodcastguid` | `EpisodeService.findEpisodesByPodcastGuid` |
+| [By GUID](https://podcastindex-org.github.io/docs-api/#get-/episodes/byguid) | ✅            | `/episodes/byguid`     | `EpisodeService.findEpisodeByGuid` |
+| [By iTunes ID](https://podcastindex-org.github.io/docs-api/#get-/episodes/byitunesid) | ❌            | `/episodes/byitunesid`    | -                                          |
+| [By ID](https://podcastindex-org.github.io/docs-api/#get-/episodes/byid) | ✅            | `/episodes/byid`          | `EpisodeService.findEpisodeById`           |
+| [Live](https://podcastindex-org.github.io/docs-api/#get-/episodes/live) | ✅            | `/episodes/live`          | `EpisodeService.findLiveEpisodes`          |
+| [Random](https://podcastindex-org.github.io/docs-api/#get-/episodes/random) | ❌            | `/episodes/random`        | -                                   |
+
+> [!WARNING]
+>
+> Do not get confused! Podcast GUID `!=` GUID. The first one is the GUID of the feed the episode is part of; the latter is the GUID of the single, specific episode.
+>
+> Finally, *ID* is the PodcastIndex internal ID (an `int`).
+
+
+
 ### Other Endpoints
 
+The PodcastIndex API exposes many more endpoints! Following categories hasn't been implemented **at all**:
+
+- Recent
+- Value
+- Stats
+- Categories
+- Hub 
+- Add
+- Apple Replacement
+
+
+
 Please note that you can manually call not-yet-implemented endpoints using 
+
 ```dart
 HttpUtil.get(endpoint)
-``` 
-from this library, where `endpoint` is of the form `/some-endpoint`. This function will take care of authentication for you.
+```
+from this library, where `endpoint` is of the form `/some-endpoint`. **This function will take care of authentication for you.** A standard `Future<Response>` will be returned.
 
 ## Getting started
 
 1. Install the library as usual:
     ```bash
     dart pub add podcastindex_dart
-    ``` 
+    ```
     or, if using Flutter:
     ```bash
     dart pub add podcastindex_dart
-    ``` 
+    ```
 
 
 
@@ -38,9 +139,13 @@ from this library, where `endpoint` is of the form `/some-endpoint`. This functi
    ```bash
     PODCASTINDEX_API_KEY='your_api_key'
     PODCASTINDEX_API_SECRET='your_api_secret'
-    ```
-⚠️ You can get these two values by signing up for a **free** PodcastIndex account <a href="https://api.podcastindex.org/" target="_blank">here</a>.
-
+   ```
+   > [!NOTE]
+   >
+   > You can get these two values by signing up for a **free** PodcastIndex account <a href="https://api.podcastindex.org/" target="_blank">here</a>.
+   
+   
+   
 3. Import the library in your files:
    ```dart
     import 'package:podcastindex_dart/src/entity/episode.dart';
@@ -51,8 +156,6 @@ from this library, where `endpoint` is of the form `/some-endpoint`. This functi
 ## Usage
 
 There are essentially two *services* that deal with the two fundamentals type returned by the API: `FeedService` and `EpisodeService`.
-
-A *feed* represents a podcast in its totality; an *episode* represents a single episode of a specific feed. 
 
 Simply instantiate the desired service:
 ```dart
@@ -90,9 +193,10 @@ To play an episode (in reality, to get the stream URL of a specific episode), we
   Episode episode = await episodeService.findEpisodeById(episodeId);
   String playbackUrl = episode.enclosureUrl.toString();
 
-
-audioplayer.play(playbackUrl); // Dumb code, to get the idea!
+  audioplayer.play(playbackUrl); // Dumb code, to get the idea!
 ```
 
-ℹ️ The name of parameters and fields reflects those of the <a href="https://podcastindex-org.github.io/docs-api" target="_blank">official API</a>.
+> [!NOTE]
+>
+> The name of parameters and fields reflects those of the <a href="https://podcastindex-org.github.io/docs-api" target="_blank">official API</a>.
 
