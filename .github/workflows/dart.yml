@@ -30,6 +30,3 @@ jobs:
       #Note that Flutter projects will want to change this to 'flutter test'.
       - name: Run tests
         run: dart test
-
-      - name: Publish
-        run: dart pub publish --force
