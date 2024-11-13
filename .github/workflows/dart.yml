@@ -30,3 +30,8 @@ jobs:
       #Note that Flutter projects will want to change this to 'flutter test'.
       - name: Run tests
         run: dart test
+
+  publish:
+    permissions:
+        id-token: write # Required for authentication using OIDC
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
