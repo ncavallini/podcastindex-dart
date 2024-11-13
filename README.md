@@ -15,7 +15,7 @@ For terminology, please refer to the official <a href="https://podcastindex-org.
 >
 > ⚡ **Current Progress: 15/40 endpoints implemented.** 
 
-![svg image](data:image/svg+xml,%20%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20viewBox%3D%22-25%20-25%20250%20250%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20style%3D%22transform%3Arotate%28-90deg%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2290%22%20cx%3D%22100%22%20cy%3D%22100%22%20fill%3D%22transparent%22%20stroke%3D%22%23e0e0e0%22%20stroke-width%3D%2216px%22%20stroke-dasharray%3D%22565.48px%22%20stroke-dashoffset%3D%220%22%3E%3C%2Fcircle%3E%0A%20%20%20%20%3Ccircle%20r%3D%2290%22%20cx%3D%22100%22%20cy%3D%22100%22%20stroke%3D%22%2352c5ff%22%20stroke-width%3D%2216px%22%20stroke-linecap%3D%22butt%22%20stroke-dashoffset%3D%22350px%22%20fill%3D%22transparent%22%20stroke-dasharray%3D%22565.48px%22%3E%3C%2Fcircle%3E%0A%20%20%20%20%3Ctext%20x%3D%2252px%22%20y%3D%22117px%22%20fill%3D%22%2352c5ff%22%20font-size%3D%2252px%22%20font-weight%3D%22bold%22%20style%3D%22transform%3Arotate%2890deg%29%20translate%280px%2C%20-196px%29%22%3E38%25%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E)
+
 
 > [!NOTE]
 >
@@ -140,12 +140,13 @@ from this library, where `endpoint` is of the form `/some-endpoint`. **This func
     PODCASTINDEX_API_KEY='your_api_key'
     PODCASTINDEX_API_SECRET='your_api_secret'
    ```
-   > [!NOTE]
-   >
-   > You can get these two values by signing up for a **free** PodcastIndex account <a href="https://api.podcastindex.org/" target="_blank">here</a>.
+
+ > [!NOTE]
+> You can get these two values by signing up > for a **free** PodcastIndex account <a href="https://api.podcastindex.org/" target="_blank">here</a>.
    
    
-   
+
+ 
 3. Import the library in your files:
    ```dart
     import 'package:podcastindex_dart/src/entity/episode.dart';
