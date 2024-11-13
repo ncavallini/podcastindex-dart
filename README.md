@@ -21,24 +21,32 @@ from this library, where `endpoint` is of the form `/some-endpoint`. This functi
 
 ## Getting started
 
-1. Install the library as usual: 
-```bash
-dart pub add podcastindex_dart
-``` 
- or, if using Flutter:
-```bash
-flutter pub add podcastindex_dart
-```
+1. Install the library as usual:
+    ```bash
+    dart pub add podcastindex_dart
+    ``` 
+    or, if using Flutter:
+    ```bash
+    dart pub add podcastindex_dart
+    ``` 
 
-2. If you don't have one already, create a `.env` file at the root of your project.
 
-Paste following content: 
 
-```bash
-PODCASTINDEX_API_KEY='your_api_key'
-PODCASTINDEX_API_SECRET='your_api_secret'
-```
+1. If you don't have one already, create a `.env` file at the root of your project.
+   
+   Paste following content: 
+   ```bash
+    PODCASTINDEX_API_KEY='your_api_key'
+    PODCASTINDEX_API_SECRET='your_api_secret'
+    ```
 ⚠️ You can get these two values by signing up for a **free** PodcastIndex account <a href="https://api.podcastindex.org/" target="_blank">here</a>.
+
+1. Import the library in your files:
+   ```dart
+    import 'package:podcastindex_dart/src/entity/episode.dart';
+    import 'package:podcastindex_dart/src/service/episode_service.dart';
+    import 'package:podcastindex_dart/src/service/feed_service.dart';
+   ```
 
 ## Usage
 
@@ -78,9 +86,10 @@ List<Feed> searchResults = feedService.findFeedsByTerm(term, max: 10, clean: tru
 To play an episode (in reality, to get the stream URL of a specific episode), we would write the following:
 
 ```dart
-String episodeGuid = "some-episode-guid-you-found-with-other-calls";
-Episode episode = episodeService.findEpisodeByGuid(episodeGuid);
-String playbackUrl = episode.url;
+  int episodeId = 16795089; // found with some other calls.
+  Episode episode = await episodeService.findEpisodeById(episodeId);
+  String playbackUrl = episode.enclosureUrl.toString();
+
 
 audioplayer.play(playbackUrl); // Dumb code, to get the idea!
 ```
