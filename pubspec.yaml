@@ -1,7 +1,7 @@
 name: podcastindex_dart
-description: A starting point for Dart libraries or applications.
+description: This library provides easy access to the PodcastIndex API to find podcasts feeds & episodes.
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+repository: https://github.com/ncavallini/podcastindex-dart
 
 environment:
   sdk: ^3.5.4
