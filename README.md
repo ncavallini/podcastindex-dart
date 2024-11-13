@@ -41,7 +41,7 @@ from this library, where `endpoint` is of the form `/some-endpoint`. This functi
     ```
 ⚠️ You can get these two values by signing up for a **free** PodcastIndex account <a href="https://api.podcastindex.org/" target="_blank">here</a>.
 
-1. Import the library in your files:
+3. Import the library in your files:
    ```dart
     import 'package:podcastindex_dart/src/entity/episode.dart';
     import 'package:podcastindex_dart/src/service/episode_service.dart';
