@@ -7,32 +7,86 @@ import 'package:podcastindex_dart/src/enum/episode_type.dart';
 part '../generated/episode.g.dart';
 
 @JsonSerializable(explicitToJson: true)
+
+///
+/// A data class to represent an episode of a feed.
 class Episode {
+  /// PodcastIndex internal ID
   final int id;
+
+  /// The name of the feed
   final String title;
+
+  /// The channel-level link of the feed.
   final Uri link;
+
+  /// The description of the episode.
   final String? description;
+
+  /// The GUID (unique identifier) of the episode.
   final String guid;
+
+  /// The datetime the episode was published (seconds since epoch).
   final int datePublished;
+
+  /// The datetime the episode was found in the feed (seconds since epoch).
   final int dateCrawled;
+
+  /// The URL of the media file.
   final Uri enclosureUrl;
+
+  /// The Content-Type of the media file specified by [enclosureUrl].
   final String enclosureType;
+
+  /// The length of the media file specified by [enclosureUrl], in bytes.
   final int enclosureLength;
+
+  /// The duration of the episode in seconds.
   final int? duration;
+
+  /// Will be 1 if the episode is marked as explicit, 0 if not.
   final int explicit;
+
+  /// The episode number, if available.
   final int? episode;
+
+  /// The type of episode (full, trailer or bonus).
   final EpisodeType? episodeType;
+
+  /// The season number, if available.
   final int? season;
+
+  /// The URL of the episode image.
   final Uri image;
+
+  /// The iTunes ID of the feed, if available.
   final int? feedItunesId;
+
+  /// The URL of the feed image.
   final Uri feedImage;
+
+  /// The PodcastIndex internal ID of the feed.
   final int feedId;
+
+  /// The URL of the feed, if found.
   final Uri? feedUrl;
+
+  /// The author of the feed, if available.
   final String? feedAuthor;
+
+  /// The title of the feed, if available.
   final String? feedTitle;
+
+  /// The language of the feed, if available, given as language code (e.g. "en"), if available
   final String? feedLanguage;
+
+  /// Link to the JSON file containing the episode chapters, if available
   final Uri? chaptersUrl;
+
+  /// Link to the file containing the episode transcript, if available
   final Uri? transcriptUrl;
+
+  /// List of transcripts for the episode, if available
   final List<Transcript>? transcripts;
 
   Episode({
@@ -64,6 +118,7 @@ class Episode {
     this.transcripts,
   });
 
+  /// Returns true if the episode is marked as explicit.
   bool get isExplicit => explicit != 0;
 
   @override

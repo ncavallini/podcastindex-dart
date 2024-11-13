@@ -1,3 +1,7 @@
+## 1.1.0
+
+- Added documentation (first version)
+
 ## 1.0.2
 - Refactor examples to comply with Dart Package Layout
 

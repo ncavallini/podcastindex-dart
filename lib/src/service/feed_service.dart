@@ -5,6 +5,8 @@ import 'package:podcastindex_dart/src/enum/medium_type.dart';
 import 'package:podcastindex_dart/src/enum/feed_value.dart';
 import 'package:podcastindex_dart/src/util/http_util.dart';
 
+/// Service to interact with the feeds part of the Podcast Index API
+/// For the full list of endpoints & parameters, see the [API documentation](https://podcastindex-org.github.io/docs-api/#get-/)
 class FeedService {
   Future<List<Feed>> findFeedsByTerm(String term,
       {FeedValue? value,

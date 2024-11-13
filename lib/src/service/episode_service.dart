@@ -4,7 +4,11 @@ import 'package:podcastindex_dart/src/entity/episode.dart';
 import 'package:podcastindex_dart/src/util/http_util.dart';
 import 'package:podcastindex_dart/src/util/utils.dart';
 
+/// Service to interact with the episodes part of the Podcast Index API
+/// For the full list of endpoints & parameters, see the [API documentation](https://podcastindex-org.github.io/docs-api/#get-/)
+
 class EpisodeService {
+  /// This call returns all of the episodes where the specified [person] is mentioned.
   Future<List<Episode>> findEpisodesByPerson(String person,
       {int? max, bool? fulltext, bool? pretty}) async {
     Map<String, dynamic> queryParameters = {
